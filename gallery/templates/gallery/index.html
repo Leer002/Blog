@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+</head>
+<body>
+    <div>
+        <h1>Today's new blogs</h1>
+        <div>
+            {% for product in products %}
+                <div>
+                    <a href="{% url 'detail' pk=product.id %}">
+                        <img src="{{product.image.url}}" alt="{{product.name}}">
+                    </a>
+                    <div>
+                        <h5>
+                            {{product.name}}
+                        </h5>
+                        <p>{{product.short_description}}
+                        </p>
+                        <a href="{% url 'edit' pk=product.id %}">Edit
+                        </a>----
+                        <a href="{% url 'delete' pk=product.id %}">Delete
+                        </a>
+                        <small>Created at: {{product.created_at}}
+                        </small>
+                        <small>Updated at: {{product.updated_at}}
+                        </small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
