@@ -10,7 +10,16 @@ from .forms import ProductForm
 class ProductListView(View):
     def get(self, request):
         products = Product.objects.all()
-        return render(request, "gallery/index.html", {"products":products})
+        form = ProductForm()
+        return render(request, "gallery/index.html", {"products":products, "form":form})
+    
+    def post(self, request):
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        products = Product.objects.all()
+        return render(request, "gallery/index.html", {"form":form, "products":products})
+    
 
 class ProductDetailView(View):
     def get(self, request, pk):

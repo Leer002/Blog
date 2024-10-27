@@ -1,0 +1,69 @@
+{% extends "users/index.html" %}
+{% block start %}
+<div class="content-section">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success {{ message.tags }} mt-4" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST" class="login-form">
+       {% csrf_token %}
+        <fieldset class="form-group">
+            {{ form.as_p }} 
+        </fieldset>
+        <button class="submit-button" type="submit">Login</button>
+        <div class="signup-link">
+            <a href="{% url 'register' %}">Don't have an account? Sign up</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    body {
+        background: #f5f8fa;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .content-section {
+        width: 90%;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .submit-button {
+        background: black;
+        color: white;
+        font-size: 1.2rem;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .signup-link {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .signup-link a {
+        text-decoration: none;
+        color: blue;
+    }
+</style>
+
+{% endblock start %}
