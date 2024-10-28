@@ -2,13 +2,13 @@
 
 {% block start %}
 <!DOCTYPE html>
-<html lang="fa">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
 </head>
 <body>
-    <h1>ثبت نام</h1>
+    <h1>Register</h1>
     <form method="post" action={% url "register" %}>
         {% csrf_token %}
         <div>
@@ -35,7 +35,7 @@
             {% endif %}
         </div>
         {% if form.errors %}
-            <div class="errorlist">
+            <div>
                 <ul>
                     {% for field in form %}
                         {% for error in field.errors %}
@@ -48,7 +48,7 @@
                 </ul>
             </div>
         {% endif %}
-        <button type="submit">ثبت نام</button>
+        <button type="submit">register</button>
     </form>
 </body>
 </html>

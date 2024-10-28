@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Edit Blog Post</h2>
-    <form action="" meghod="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">

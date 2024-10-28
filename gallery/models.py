@@ -28,4 +28,3 @@ class Product(models.Model):
             return ' '.join(words[:30]) + '...'
         else:
             return self.description
-    

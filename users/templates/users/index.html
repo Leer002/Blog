@@ -13,9 +13,6 @@
 
     <title>{{ title }}</title>
 
-    <!-- main css -->
-    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" /> {% endcomment %}
-
     <!-- message here -->
     {% if messages %}
     {% for message in messages %}
@@ -24,51 +21,11 @@
     </script>
     {% endfor %}
     {% endif %}
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 50px;
-        }
-    </style>
 </head>
 
 <body>
     <header>
-        <div class="navbar">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'list' %}">project</a>
-            </div>
+        <div>
             <div class="navbar-links">
                 <a href="{% url 'list' %}">Home</a>
                 {% if user.is_authenticated %}
@@ -81,8 +38,8 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="row">
+    <div>
+        <div>
             {% block start %}
             {% if user.is_authenticated %}
             <h1>Welcome back {{ user.username }}!</h1>

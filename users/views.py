@@ -31,18 +31,17 @@ class UserRegisterView(View):
 
             authenticated_user = authenticate(request, username=username, password=password)
             if authenticated_user is not None:
+                login(request, authenticated_user)
                 return redirect('list')
             
         return render(request, "users/register.html", {"form":form})
-
-
 
 
 class UserLoginView(View):
     def get(self, request):
         form = AuthenticationForm()
         return render(request, 'users/login.html', {'form': form, 'title': 'log in'})
-
+    
     def post(self, request):
         try:
             username = request.POST.get('username')
@@ -50,8 +49,8 @@ class UserLoginView(View):
             user_obj = User.objects.filter(username=username)
             if not user_obj.exists():
                 messages.error(request, "Username not found")
-                return redirect('login')
-            user_obj = authenticate(username=username, password = password)
+                return redirect('register')
+            user_obj = authenticate(username = username, password = password)
             if user_obj:
                 login(request, user_obj)
                 return redirect('list')
@@ -61,10 +60,11 @@ class UserLoginView(View):
         except Exception as e:
             messages.error(request, " Somthing went wrong")
             return redirect('list')
-        
-
-
+    
 class UserLogoutView(View):
     def get(self, request):
         logout(request)
         return render(request, "users/index.html")
+    
+
+

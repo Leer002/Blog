@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views import View
 from django.contrib import messages
 
@@ -20,7 +19,6 @@ class ProductListView(View):
         products = Product.objects.all()
         return render(request, "gallery/index.html", {"form":form, "products":products})
     
-
 class ProductDetailView(View):
     def get(self, request, pk):
         try:
@@ -28,6 +26,7 @@ class ProductDetailView(View):
         except Product.DoesNotExist:
             messages.error(request, "Not found")
         return render(request, "gallery/index2.html", {"product":product})
+
 
 class EditView(View):
     def get(self, request, pk):
@@ -43,9 +42,10 @@ class EditView(View):
             product = Product.objects.get(pk=pk)
         except Product.DoesNotExist:
             messages.error(request, "Not found")
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
+            return redirect("list")
         return render(request, "gallery/edit.html", {"form":form})
 
 class DeleteView(View):
@@ -63,3 +63,5 @@ class DeleteView(View):
             messages.error(request, "Not found")
         product.delete()
         return redirect("list")
+    
+
