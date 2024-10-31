@@ -28,3 +28,14 @@ class Product(models.Model):
             return ' '.join(words[:30]) + '...'
         else:
             return self.description
+
+
+class Comment(models.Model):
+    product = models.ForeignKey(Product, verbose_name="comment", related_name="%(class)s", on_delete=models.CASCADE)
+    text = models.TextField()
+    user_name = models.CharField(max_length=40, default="Anonymous")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user_name}: {self.text}"

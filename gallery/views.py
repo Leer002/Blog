@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
 
-from .models import Product
-from .forms import ProductForm
+from .models import Product, Comment
+from .forms import ProductForm, CommentForm
 
  
 class ProductListView(View):
@@ -23,9 +23,21 @@ class ProductDetailView(View):
     def get(self, request, pk):
         try:
             product = Product.objects.get(pk=pk)
+            comments = Comment.objects.all()
+            form = CommentForm()
         except Product.DoesNotExist:
             messages.error(request, "Not found")
-        return render(request, "gallery/index2.html", {"product":product})
+        return render(request, "gallery/index2.html", {"product":product, "form":form, "comments":comments})
+    
+    def post(self, request, pk):
+        product = Product.objects.get(pk=pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.product = product
+            comment.save()
+            messages.success(request, "Comment added successfully!")
+        return redirect("detail", pk=pk)
 
 
 class EditView(View):
@@ -64,4 +76,3 @@ class DeleteView(View):
         product.delete()
         return redirect("list")
     
-

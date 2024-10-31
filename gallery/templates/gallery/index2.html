@@ -15,6 +15,21 @@
     <a href="{% url 'edit' pk=product.id %}">Edit</a>
     <a href="{% url 'delete' pk=product.id %}">Delete</a>
     <br/>
+    <h2>Comments</h2>
+    {% for comment in comments %}
+        <div>
+            <strong>{{comment.user_name}}</strong>: {{comment.text}}
+            <small>{{comment.created_time}}</small>
+        </div>
+    {%empty%}
+        <p>No comments yet!</p>
+    {% endfor %}
+    <h3>Add a coment</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Save</button>
+    </form>
     <a href="{% url 'list' %}">Back to Blog home page</a>
 </body>
 </html>
