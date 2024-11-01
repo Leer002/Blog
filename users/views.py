@@ -32,7 +32,7 @@ class UserRegisterView(View):
             authenticated_user = authenticate(request, username=username, password=password)
             if authenticated_user is not None:
                 login(request, authenticated_user)
-                return redirect('list')
+                return redirect('profile')
             
         return render(request, "users/register.html", {"form":form})
 
@@ -53,7 +53,7 @@ class UserLoginView(View):
             user_obj = authenticate(username = username, password = password)
             if user_obj:
                 login(request, user_obj)
-                return redirect('list')
+                return redirect('profile')
             messages.error(request, "Wrong Password")
             return redirect('login')
              
