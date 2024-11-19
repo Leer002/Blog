@@ -3,7 +3,6 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse
 from django.contrib.auth.models import User
 
 
