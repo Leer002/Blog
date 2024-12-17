@@ -1,40 +1,45 @@
-<!DOCTYPE html>
+
+{% load static %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil:{{user}}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <a href="{% url 'list' %}">Back</a>
     <div>
-        <h1>{{user}}</h1>
         {% for product in products %}
-        <div>
-                {% if product.image %}
-                    <img src="{{product.image.url}}" alt="Das Foto konnte nicht hochgeladen werden."/>
-                {% endif %}
-                <div>
-                    <p>{{product.short_description}}
-                    </p>
-                    <a href="{% url 'edit' pk=product.id %}">Edit
-                    </a>----
-                    <a href="{% url 'delete' pk=product.id %}">Delete
-                    </a>
-                    <small>Created at: {{product.created_at}}
-                    </small>
-                    <small>Updated at: {{product.updated_at}}
-                    </small>
-                </div>
+        <div id="insgesamt">
+            <center>
+                <h1>{{user}}</h1>
+            {% if product.image %}
+                <img src="{{product.image.url}}" alt="Das Foto konnte nicht hochgeladen werden."/>
+            {% endif %}
+            <div>
+                <p>{{product.short_description}}
+                </p>
+                <small>Created at: {{product.created_at}}
+                </small><br/>
+                <small>Updated at: {{product.updated_at}}
+                </small><br/><br/>
+                <a href="{% url 'edit' pk=product.id %}">Edit
+                </a>----
+                <a href="{% url 'delete' pk=product.id %}">Delete
+                </a>
+            </div>
+            </center>
         </div>
         {% endfor %}
     </div>
-    <div>
+    <div id="form">
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
             <button type="submit">Create</button>
         </form>
     </div>
-    <a href="{% url 'list' %}">Back</a>
 </body>
 </html>
+

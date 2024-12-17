@@ -1,5 +1,4 @@
 {% extends "users/index.html" %}
-
 {% block start %}
 <!DOCTYPE html>
 <html>
@@ -12,28 +11,28 @@
     <form method="post" action={% url "register" %}>
         {% csrf_token %}
         <div>
-            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}:</label>
             {{ form.username }}
             {% if form.username.errors %}
-                <div style="color: red;">{{ form.username.errors }}</div>
+                <div>{{ form.username.errors }}</div>
             {% endif %}
-        </div>
+        </div><br/>
         <div>
-            <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
-            {{ form.password1 }} <br/>
-            <label for="{{form.password2.id_for_lable}}">{{form.password2.label}}</label>
+            <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}:</label>
+            {{ form.password1 }} <br/><br/>
+            <label for="{{form.password2.id_for_lable}}">{{form.password2.label}}:</label>
             {{form.password2}}
             {% if form.password1.errors %}
-                <div style="color: red;">{{ form.password.errors }}</div>
+                <div>{{ form.password.errors }}</div>
             {% endif %}
-        </div>
+        </div><br/>
         <div>
-            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}:</label>
             {{ form.email }}
             {% if form.email.errors %}
-                <div style="color: red;">{{ form.email.errors }}</div>
+                <div>{{ form.email.errors }}</div>
             {% endif %}
-        </div>
+        </div><br/>
         {% if form.errors %}
             <div>
                 <ul>
@@ -53,3 +52,4 @@
 </body>
 </html>
 {% endblock start %}
+

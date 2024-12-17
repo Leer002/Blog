@@ -1,23 +1,18 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="title" content="project">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
-    <meta name="author" content="vinayak sharma">
-
     <title>{{ title }}</title>
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
     <!-- message here -->
     {% if messages %}
     {% for message in messages %}
     <script>
-        alert("{{ message }}");
+        alert({{message}});
     </script>
     {% endfor %}
     {% endif %}
@@ -41,11 +36,11 @@
     <div>
         <div>
             {% block start %}
-            {% if user.is_authenticated %}
-            <h1>Welcome back {{ user.username }}!</h1>
-            {% else %}
-            <h1>Please log in</h1>
-            {% endif %}
+                {% if user.is_authenticated %}
+                <h1 id="start">Welcome back {{ user.username }}!</h1>
+                {% else %}
+                <center><h1 id="start">Please log in</h1></center>
+                {% endif %}
             {% endblock %}
         </div>
     </div>

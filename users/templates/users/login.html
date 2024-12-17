@@ -1,23 +1,23 @@
 {% extends "users/index.html" %}
 {% block start %}
 <div>
-    {% if messages %}
-        {% for message in messages %}
-            <div role="alert">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-    <form method="POST">
-       {% csrf_token %}
-        <fieldset>
-            {{ form.as_p }} 
-        </fieldset>
-        <button type="submit">Login</button>
-        <div>
-            <a href="{% url 'register' %}">Don't have an account? Sign up</a>
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="login">
+        <form method="POST">
+            {% csrf_token %}
+                 {{ form.as_p }} 
+             <button type="submit">Login</button>
+            </form>
         </div>
-    </form>
+        <a href="{% url 'register' %}">Don't have an account? Sign up</a>
 </div>
 
 {% endblock start %}

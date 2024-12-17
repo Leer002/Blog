@@ -30,10 +30,9 @@ class UserRegisterView(View):
             authenticated_user = authenticate(request, username=username, password=password)
             if authenticated_user is not None:
                 login(request, authenticated_user)
-                return redirect('profile')
+                return redirect("list")
             
         return render(request, "users/register.html", {"form":form})
-
 
 class UserLoginView(View):
     def get(self, request):
@@ -58,11 +57,10 @@ class UserLoginView(View):
         except Exception as e:
             messages.error(request, " Somthing went wrong")
             return redirect('list')
-    
+
 class UserLogoutView(View):
     def get(self, request):
         logout(request)
         return render(request, "users/index.html")
     
-
 

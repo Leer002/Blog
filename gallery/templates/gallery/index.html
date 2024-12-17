@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Website</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <nav>
@@ -16,41 +18,49 @@
         {% endif %}
     </nav>
     <div>
-        <h1>Today's new blogs</h1>
+        <center><h1>Today's new blogs: </h1></center>
         <div>
-            {% for product in products %}
-                <h2>{{product.user.username}}</h2>
-                <div>
+            <span id="klein">
+                {% for product in products %}
+                <div id="insgesamt">
+                    <h2>{{product.user.username}}</h2>
                     {% if product.image %}
                     <a href="{% url 'detail' product.id %}">
                         <img src="{{product.image.url}}" alt="{{product.name}}" width="300">
                     </a>
                     {% endif %}
                     <div>
-                        <h5>
+                        <h3>
                             {{product.name}}
-                        </h5>
+                        </h3>
                         <p>{{product.short_description}}
                         </p>
+                        <small>Created at: {{product.created_at}}
+                        </small><br/>
+                        <small>Updated at: {{product.updated_at}}
+                        </small><br/><br/>
                         <a href="{% url 'edit' pk=product.id %}">Edit
                         </a>----
                         <a href="{% url 'delete' pk=product.id %}">Delete
                         </a>
-                        <small>Created at: {{product.created_at}}
-                        </small>
-                        <small>Updated at: {{product.updated_at}}
-                        </small>
                     </div>
                 </div>
-            {% endfor %}
+            {% endfor %}</span>
         </div>
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">
-                Save
-            </button>
-        </form>
+        {% if user.is_authenticated %}
+        <div id="form">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">
+                    Save
+                </button>
+            </form>
+        {% else %}
+            <p class="auth">Please log in to your account to be able to add the product.</p>
+        {% endif %}
+        </div>
     </div>
 </body>
 </html>
+

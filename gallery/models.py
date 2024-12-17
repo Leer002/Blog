@@ -23,14 +23,14 @@ class Product(models.Model):
         self.image = image
         self.save()
 
-    
+
     def short_description(self):
         words = self.description.split()
         if len(words) > 50:
             return ' '.join(words[:30]) + '...'
         else:
             return self.description
-
+   
 
 class Comment(models.Model):
     product = models.ForeignKey(Product, verbose_name="comment", related_name="%(class)s", on_delete=models.CASCADE)

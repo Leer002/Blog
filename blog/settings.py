@@ -112,9 +112,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
@@ -135,5 +132,3 @@ EMAIL_HOST_USER = "ootaku.9993@gmail.com"
 EMAIL_HOST_PASSWORD = "ugin hwgk ktwi zzas"
 
 
- 
-   

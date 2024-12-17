@@ -10,7 +10,7 @@ from .forms import ProductForm, CommentForm
 class ProductListView(View):
     def get(self, request):
         products = Product.objects.all()
-        form = ProductForm()
+        form = ProductForm() 
         return render(request, "gallery/index.html", {"products":products, "form":form, "user":request.user})
     
     def post(self, request):
@@ -21,7 +21,7 @@ class ProductListView(View):
             product.save()
         products = Product.objects.all()
         return render(request, "gallery/index.html", {"form":form, "products":products})
-    
+
 class ProductDetailView(View):
     def get(self, request, pk):
         try:
@@ -41,8 +41,7 @@ class ProductDetailView(View):
             comment.save()
             messages.success(request, "Comment added successfully!")
         return redirect("detail", pk=pk)
-
-
+       
 class EditView(View):
     def get(self, request, pk):
         try:
@@ -79,7 +78,6 @@ class DeleteView(View):
         product.delete()
         return redirect("list")
     
-
 class UserProfileView(View):
     def get(self, request, username):
         user = get_object_or_404(User, username=username)
@@ -98,3 +96,4 @@ class UserProfileView(View):
             product.save()
         products = Product.objects.filter(user=user)
         return render(request, "gallery/profile.html", {"products":products, "form":form})
+     
