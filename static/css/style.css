@@ -1,0 +1,127 @@
+a:not(:has(img)),button {
+    text-decoration: none;
+    color: navy;
+    border: 3px solid darkcyan;
+    transition: border-radius .3s ease-in-out;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+a:not(:has(img)):hover,button:hover {
+    border-radius: 10px;
+    background-color: lightskyblue;
+}
+
+h1:hover {
+    color: darkcyan;
+    width: fit-content;
+}
+
+h1 {
+    text-shadow: 2px 3px 5px cadetblue;
+    width: fit-content;
+    transition: color 0.3s ease-in;
+}
+
+#insgesamt {
+    border-bottom: 3px solid cornflowerblue;
+    width: fit-content;
+    padding: 10px;
+    transition: border-radius .3s ease-in-out;
+    border-radius: 10px;
+}
+
+#insgesamt:hover{
+    border-radius: 30px;
+}
+
+#klein {
+    text-align: center;
+}
+
+h2:hover,h3:hover {
+    color: darkred;
+}
+h2,h3 {
+    text-shadow: 2px 3px 5px cadetblue;
+    display: block;
+    margin: 20px auto;
+}
+
+small {
+    font-size: 10px;
+}
+
+p {
+    font-size: 17px;
+}
+
+#form {
+    margin-top: 50px;
+}
+
+#form label {
+    display: block;
+    margin-bottom: 8px;
+    width: fit-content;
+    text-shadow: 2px 3px 5px cadetblue;
+}
+
+#form label:hover {
+    color: darkred;
+}
+
+#form textarea {
+    resize: none;
+}
+
+#form textarea,input {
+    border-radius: 3px;
+    transition: border-radius 0.2s ease-in-out;
+    padding: 7px;
+}
+
+#form textarea:focus,input:focus {
+    border-radius: 20px;
+}
+
+.auth {
+    border: 3px dashed red;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 6px;
+    margin-top: 30px;
+}
+
+.auth:hover {
+    background-color: lightcoral;
+}
+
+button {
+    background-color: white;
+}
+
+img {
+    width: 500px;
+}
+
+.abstand {
+    display: inline;
+}
+
+.form-a {
+    margin-bottom: 15px;
+}
+
+#comment {
+    margin-bottom: 10px;
+}
+
+#start {
+    font-size: 50px;
+}
+
+.login {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
